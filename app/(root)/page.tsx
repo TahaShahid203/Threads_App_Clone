@@ -1,4 +1,3 @@
-import Thread from "@/lib/models/thread.model";
 import { fetchThreads } from "../../lib/actions/thread.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import ThreadCard from "@/components/cards/ThreadCard";

@@ -95,7 +95,6 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       image: values.profile_photo,
       userId: user.id,
       path: pathname,
-      onboarded: true,
     });
 
     if (pathname === "/profile/edit") {
