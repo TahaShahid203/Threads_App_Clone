@@ -2,10 +2,14 @@ import Thread from "@/lib/models/thread.model";
 import { fetchThreads } from "../../lib/actions/thread.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import ThreadCard from "@/components/cards/ThreadCard";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const results = await fetchThreads(1,30);
   const user = await currentUser();
+  if(!user){
+    redirect("/sign-in");
+  }
   console.log(results);
   return (
     <div>
