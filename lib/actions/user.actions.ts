@@ -12,6 +12,7 @@ interface Params {
     bio: string;
     image: string;
     path: string;
+    onboarded: boolean;
 }
 
 export async function updateUser(
@@ -20,6 +21,7 @@ export async function updateUser(
     name,
     bio,
     image,
+    onboarded,
     path
 } : Params
 ): Promise<void> {
@@ -32,6 +34,7 @@ export async function updateUser(
                 name,
                 bio,
                 image,
+                onboarded,
             },
             {
                 upsert: true
@@ -43,5 +46,19 @@ export async function updateUser(
         }
     } catch (error) {
         throw new Error(`Error updating user: ${error}`);
+    }
+}
+
+export async function fetchUser(userId: string) {
+    try {
+        await connectToDB();
+
+        return await User.findOne({ id: userId })
+        // .populate({
+        //     path: 'communities',
+        //     model: Community
+        // })
+    } catch (error) {
+        throw new Error(`Error fetching user: ${error}`);
     }
 }

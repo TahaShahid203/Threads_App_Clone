@@ -6,7 +6,6 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -86,6 +85,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       if (imgRes && imgRes[0].fileUrl) {
         values.profile_photo = imgRes[0].fileUrl;
       }
+      console.log(values);
     }
 
     await updateUser({
@@ -95,6 +95,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       image: values.profile_photo,
       userId: user.id,
       path: pathname,
+      onboarded: true,
     });
 
     if (pathname === "/profile/edit") {
@@ -142,6 +143,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                     onChange={(e) => handleImage(e, field.onChange)}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -160,6 +162,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -178,6 +181,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -196,6 +200,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
